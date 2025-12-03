@@ -1,0 +1,5 @@
+Uso;Clasificacion;I1_H1;I1_H2;I1_H3;I2_H1;I2_H2;I2_H3
+Uso ligero|Bombas centrífugas y compresores, transportadores de correa (materiales ligeros), ventiladores y bombas de hasta 7,5 kW.|1.1|1.1|1.2|1.1|1.2|1.3
+Uso normal|Cizallas para chapas de acero, transportadores de correa y cadena (materiales pesados), cribas, grupos electrógenos, máquinas herramienta, amasadoras, lavadoras industriales, prensas de impresión, ventiladores y bombas de más de 7,5 kW.|1.1|1.2|1.3|1.2|1.3|1.4
+Uso pesado|Molinos de martillos, compresores de pistón, transportadores de correa para cargas pesadas, elevadores, máquinas textiles, máquinas de papel de funcionamiento continuo, bombas de pistón y bombas de dragado, sierras circulares.|1.2|1.3|1.4|1.4|1.5|1.6
+Uso extra pesado|Motores de alta potencia, trituradoras de piedra, calandras, mezcladoras, grúas, excavadoras, dragas.|1.3|1.4|1.5|1.5|1.6|1.8

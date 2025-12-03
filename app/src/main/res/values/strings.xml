@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Seleccion de Bandas V y Cadenas de Rodillos</string>
+
+    <!-- Opciones para Spinners de Bandas V -->
+    <string-array name="impulsores_array">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="actividad_array">
+        <item>Uso ligero</item>
+        <item>Uso normal</item>
+        <item>Uso pesado</item>
+        <item>Uso extra pesado</item>
+    </string-array>
+    <string-array name="horas_diarias_array">
+        <item>0-8</item>
+        <item>8-16</item>
+        <item>16-24</item>
+    </string-array>
+
+    <!-- Descripciones de ayuda para Impulsores (Bandas V) -->
+    <string-array name="impulsor_descriptions_array">
+        <item>(1) Motores eléctricos de CA: alto deslizamiento, jaula de ardilla, síncronos; Motores eléctricos de CC: excitación en paralelo; motores de combustión interna multicilíndricos; motores de gas o turbinas de vapor.</item>
+        <item>(2) Motores eléctricos de CA: par alto, alto deslizamiento, monofásicos, rotor bobinado, conmutador; Motores eléctricos de CC: excitación serie y compuesta; motores de combustión interna monocilíndricos con acoplamiento directo o con contraeje; máquinas de vapor</item>
+    </string-array>
+
+
+</resources>

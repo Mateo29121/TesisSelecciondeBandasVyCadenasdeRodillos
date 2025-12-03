@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    CASO 1: Coincide con context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+    Tu ruta "Documents/" está bien, pero "Documents" (sin la barra) también funciona.
+    -->
+    <external-files-path
+        name="external_documents"
+        path="Documents" />
+
+    <!--
+    CASO 2: (FALTANTE) Coincide con el fallback a context.getExternalCacheDir()
+    El path="." significa "la raíz de ese directorio".
+    -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+
+    <!--
+    CASO 3: (FALTANTE) Coincide con el fallback a context.getFilesDir()
+    El path="." significa "la raíz de ese directorio".
+    -->
+    <files-path
+        name="internal_files"
+        path="." />
+
+</paths>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background"
+    android:padding="20dp">
+
+    <!-- Título Principal -->
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Bandas V - Datos de Entrada"
+        android:textColor="@color/text_color_primary"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- Botones de Navegación Inferior -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Regresar al Inicio" />
+
+        <Button
+            android:id="@+id/btnCalcular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calcular" />
+    </LinearLayout>
+
+    <!-- Contenido con Scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/main_title"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <!-- NUEVO: Selección de Tipo de Banda -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tipo de Banda"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_tipo_banda"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/text_color_secondary"
+                android:spinnerMode="dropdown" />
+
+            <!-- Sección de Potencia y Distancia -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Potencia y Distancia"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_potencia_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="La potencia es obligatoria"
+                android:textColor="@color/warning_red"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/et_potencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/text_color_secondary"
+                android:hint="Potencia nominal en Kw"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text_color_primary"
+                android:textColorHint="@color/text_color_secondary" />
+
+            <TextView
+                android:id="@+id/tv_distancia_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="La distancia es obligatoria"
+                android:textColor="@color/warning_red"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/et_distancia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/text_color_secondary"
+                android:hint="Distancia entre centros (mm)"
+                android:inputType="numberDecimal"
+                android:textColor="@color/text_color_primary"
+                android:textColorHint="@color/text_color_secondary" />
+
+
+            <!-- Sección de Velocidades -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Relación de Velocidades"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_velocidad_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Debe ingresar 2 datos"
+                android:textColor="@color/warning_red"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_ne"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/text_color_secondary"
+                    android:hint="Ne (RPM)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_secondary" />
+
+                <EditText
+                    android:id="@+id/et_ns"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/text_color_secondary"
+                    android:hint="Ns (RPM)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_mg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/text_color_secondary"
+                    android:hint="Relación (mg)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_secondary" />
+
+                <EditText
+                    android:id="@+id/et_e"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/text_color_secondary"
+                    android:hint="Relación (e)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_secondary" />
+            </LinearLayout>
+
+
+            <!-- Sección de Factor de Servicio -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Factor de Servicio"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Impulsor -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Impulsor"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="16sp" />
+                <ImageButton
+                    android:id="@+id/btn_help_impulsor"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@android:drawable/ic_menu_help"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Ayuda Impulsor" />
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/spinner_impulsor"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/text_color_secondary"
+                android:spinnerMode="dropdown" />
+
+            <!-- Actividad -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Actividad"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="16sp" />
+                <ImageButton
+                    android:id="@+id/btn_help_actividad"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@android:drawable/ic_menu_help"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Ayuda Actividad" />
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/spinner_actividad"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/text_color_secondary"
+                android:spinnerMode="dropdown" />
+
+            <!-- Horas Diarias -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Horas Diarias"
+                android:textColor="@color/text_color_primary"
+                android:textSize="16sp" />
+            <Spinner
+                android:id="@+id/spinner_horas_diarias"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/text_color_secondary"
+                android:spinnerMode="dropdown" />
+
+            <!-- Resultado Factor de Servicio -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:text="Factor de Servicio Seleccionado:"
+                android:textColor="@color/text_color_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_factor_servicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/accent_color"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

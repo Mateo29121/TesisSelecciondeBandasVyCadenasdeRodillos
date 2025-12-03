@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background"
+    android:padding="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/main_title_resultados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Resultados del Cálculo - Bandas"
+        android:textColor="@color/text_color_primary"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/layout_datos_resumen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_title_resultados"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Potencia Corregida"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_potencia_corregida_resultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/accent_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="10.5 Kw" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Tipo de Banda"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_tipo_banda_resumen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/accent_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Bandas Lisas" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Volver a Datos" />
+        <Button
+            android:id="@+id/btnImprimir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Imprimir" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_buttons"
+        android:layout_below="@id/layout_datos_resumen">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:id="@+id/layout_resultado_clasica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView style="@style/ResultadoAlternativa" android:text="Alternativa 1: Clásica (LISA)" />
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp">
+                    <LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_clasica" style="@style/ResultadoValorPrincipal" /></LinearLayout>
+                    <LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_clasica" style="@style/ResultadoValorPrincipal" /></LinearLayout>
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_clasica" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_clasica" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+
+                <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/tv_banda_seleccionada_codigo_clasica" style="@style/ResultadoCalculo" />
+
+                <TextView android:id="@+id/tv_banda_seleccionada_longitud_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_lp_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_le_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_distancia_centros_necesaria_clasica" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+
+                <TextView android:id="@+id/tv_distancia_efectiva_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone">
+                    <TextView android:id="@+id/tv_pb_resultado_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_pd_resultado_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_potencia_admisible_clasica" style="@style/ResultadoCalculo" />
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone">
+                    <TextView android:id="@+id/tv_arco_contacto_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_factor_correccion_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_cl_resultado_clasica" style="@style/ResultadoCalculo" />
+                </LinearLayout>
+
+                <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
+                    <TextView android:id="@+id/tv_calfa_resultado_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_tension_estatica_clasica" style="@style/ResultadoCalculo" android:gravity="start" />
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
+                    <TextView android:id="@+id/tv_tension_centrifuga_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_tension_tenso_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_tension_flojo_clasica" style="@style/ResultadoCalculo" android:gravity="end" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/accent_color" android:layout_marginTop="16dp" android:layout_marginBottom="12dp" />
+                <TextView style="@style/ResultadoAlternativa" android:text="Segunda Iteración" android:textSize="18sp" android:textColor="@color/accent_color" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" android:gravity="center_vertical">
+                    <Spinner android:id="@+id/spinner_perfil_iter2_clasica" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp"/>
+                    <com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                        <com.google.android.material.textfield.TextInputEditText android:id="@+id/et_nuevo_d_iter2_clasica" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nuevo d (mm)" android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <Button android:id="@+id/btn_recalcular_iter2_clasica" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recalcular" android:layout_marginTop="8dp"/>
+
+                <LinearLayout android:id="@+id/layout_resultados_iter2_clasica" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                    <TextView android:text="Resultados Iteración 2" android:textColor="@color/text_color_primary" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_iter2_clasica" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_iter2_clasica" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_iter2_clasica" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_iter2_clasica" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/tv_banda_seleccionada_codigo_iter2_clasica" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_banda_seleccionada_longitud_iter2_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_lp_iter2_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_le_iter2_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_distancia_centros_necesaria_iter2_clasica" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                    <TextView android:id="@+id/tv_distancia_efectiva_iter2_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_iter2_clasica" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_iter2_clasica" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
+                        <TextView android:id="@+id/tv_calfa_resultado_iter2_clasica" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                        <TextView android:id="@+id/tv_tension_estatica_iter2_clasica" style="@style/ResultadoCalculo" android:gravity="start" />
+                    </LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_iter2_clasica" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_iter2_clasica" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_resultado_estrecha_din"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView style="@style/ResultadoAlternativa" android:text="Alternativa 2: Estrecha DIN (LISA)" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_estrecha_din" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_estrecha_din" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_estrecha_din" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_estrecha_din" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/tv_banda_seleccionada_codigo_estrecha_din" style="@style/ResultadoCalculo" />
+                <TextView android:id="@+id/tv_banda_seleccionada_longitud_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_lp_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_le_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_distancia_centros_necesaria_estrecha_din" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                <TextView android:id="@+id/tv_distancia_efectiva_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_estrecha_din" style="@style/ResultadoCalculo" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_estrecha_din" style="@style/ResultadoCalculo" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_estrecha_din" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_estrecha_din" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/accent_color" android:layout_marginTop="16dp" android:layout_marginBottom="12dp" />
+                <TextView style="@style/ResultadoAlternativa" android:text="Segunda Iteración" android:textSize="18sp" android:textColor="@color/accent_color" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" android:gravity="center_vertical"><Spinner android:id="@+id/spinner_perfil_iter2_estrecha_din" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp"/><com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"><com.google.android.material.textfield.TextInputEditText android:id="@+id/et_nuevo_d_iter2_estrecha_din" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nuevo d (mm)" android:inputType="numberDecimal" /></com.google.android.material.textfield.TextInputLayout></LinearLayout>
+                <Button android:id="@+id/btn_recalcular_iter2_estrecha_din" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recalcular" android:layout_marginTop="8dp"/>
+                <LinearLayout android:id="@+id/layout_resultados_iter2_estrecha_din" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                    <TextView android:text="Resultados Iteración 2" android:textColor="@color/text_color_primary" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_iter2_estrecha_din" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_iter2_estrecha_din" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_iter2_estrecha_din" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_iter2_estrecha_din" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/tv_banda_seleccionada_codigo_iter2_estrecha_din" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_banda_seleccionada_longitud_iter2_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_lp_iter2_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_le_iter2_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_distancia_centros_necesaria_iter2_estrecha_din" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                    <TextView android:id="@+id/tv_distancia_efectiva_iter2_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_iter2_estrecha_din" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_iter2_estrecha_din" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_iter2_estrecha_din" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_iter2_estrecha_din" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_iter2_estrecha_din" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_iter2_estrecha_din" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_resultado_estrecha_arpm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView style="@style/ResultadoAlternativa" android:text="Alternativa 3: Estrecha ARPM (LISA)" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_estrecha_arpm" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_estrecha_arpm" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/tv_banda_seleccionada_codigo_estrecha_arpm" style="@style/ResultadoCalculo" />
+                <TextView android:id="@+id/tv_banda_seleccionada_longitud_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_lp_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_le_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_distancia_centros_necesaria_estrecha_arpm" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                <TextView android:id="@+id/tv_distancia_efectiva_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_estrecha_arpm" style="@style/ResultadoCalculo" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_estrecha_arpm" style="@style/ResultadoCalculo" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/accent_color" android:layout_marginTop="16dp" android:layout_marginBottom="12dp" />
+                <TextView style="@style/ResultadoAlternativa" android:text="Segunda Iteración" android:textSize="18sp" android:textColor="@color/accent_color" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" android:gravity="center_vertical"><Spinner android:id="@+id/spinner_perfil_iter2_estrecha_arpm" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp"/><com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"><com.google.android.material.textfield.TextInputEditText android:id="@+id/et_nuevo_d_iter2_estrecha_arpm" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nuevo d (mm)" android:inputType="numberDecimal" /></com.google.android.material.textfield.TextInputLayout></LinearLayout>
+                <Button android:id="@+id/btn_recalcular_iter2_estrecha_arpm" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recalcular" android:layout_marginTop="8dp"/>
+                <LinearLayout android:id="@+id/layout_resultados_iter2_estrecha_arpm" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                    <TextView android:text="Resultados Iteración 2" android:textColor="@color/text_color_primary" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_iter2_estrecha_arpm" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_iter2_estrecha_arpm" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/tv_banda_seleccionada_codigo_iter2_estrecha_arpm" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_banda_seleccionada_longitud_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_lp_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_le_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_distancia_centros_necesaria_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                    <TextView android:id="@+id/tv_distancia_efectiva_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_iter2_estrecha_arpm" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_iter2_estrecha_arpm" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_resultado_clasica_x"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_background_alt"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView style="@style/ResultadoAlternativa" android:text="Alternativa 1: Clásica X (DENTADA)" />
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_clasica_x" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_clasica_x" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_clasica_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_clasica_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/tv_banda_seleccionada_codigo_clasica_x" style="@style/ResultadoCalculo" />
+                <TextView android:id="@+id/tv_banda_seleccionada_longitud_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_lp_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_le_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_distancia_centros_necesaria_clasica_x" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                <TextView android:id="@+id/tv_distancia_efectiva_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_clasica_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_clasica_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_clasica_x" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_clasica_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/accent_color" android:layout_marginTop="16dp" android:layout_marginBottom="12dp" />
+                <TextView style="@style/ResultadoAlternativa" android:text="Segunda Iteración" android:textSize="18sp" android:textColor="@color/accent_color" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" android:gravity="center_vertical"><Spinner android:id="@+id/spinner_perfil_iter2_clasica_x" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp"/><com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"><com.google.android.material.textfield.TextInputEditText android:id="@+id/et_nuevo_d_iter2_clasica_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nuevo d (mm)" android:inputType="numberDecimal" /></com.google.android.material.textfield.TextInputLayout></LinearLayout>
+                <Button android:id="@+id/btn_recalcular_iter2_clasica_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recalcular" android:layout_marginTop="8dp"/>
+                <LinearLayout android:id="@+id/layout_resultados_iter2_clasica_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                    <TextView android:text="Resultados Iteración 2" android:textColor="@color/text_color_primary" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_iter2_clasica_x" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_iter2_clasica_x" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_iter2_clasica_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_iter2_clasica_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/tv_banda_seleccionada_codigo_iter2_clasica_x" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_banda_seleccionada_longitud_iter2_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_lp_iter2_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_le_iter2_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_distancia_centros_necesaria_iter2_clasica_x" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                    <TextView android:id="@+id/tv_distancia_efectiva_iter2_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_iter2_clasica_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_iter2_clasica_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_iter2_clasica_x" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_iter2_clasica_x" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_iter2_clasica_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_iter2_clasica_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_resultado_estrecha_din_x"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_background_alt"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView style="@style/ResultadoAlternativa" android:text="Alternativa 2: Estrecha DIN X (DENTADA)" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_estrecha_din_x" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_estrecha_din_x" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/tv_banda_seleccionada_codigo_estrecha_din_x" style="@style/ResultadoCalculo" />
+                <TextView android:id="@+id/tv_banda_seleccionada_longitud_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_lp_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_le_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_distancia_centros_necesaria_estrecha_din_x" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                <TextView android:id="@+id/tv_distancia_efectiva_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_estrecha_din_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_estrecha_din_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/accent_color" android:layout_marginTop="16dp" android:layout_marginBottom="12dp" />
+                <TextView style="@style/ResultadoAlternativa" android:text="Segunda Iteración" android:textSize="18sp" android:textColor="@color/accent_color" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" android:gravity="center_vertical"><Spinner android:id="@+id/spinner_perfil_iter2_estrecha_din_x" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp"/><com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"><com.google.android.material.textfield.TextInputEditText android:id="@+id/et_nuevo_d_iter2_estrecha_din_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nuevo d (mm)" android:inputType="numberDecimal" /></com.google.android.material.textfield.TextInputLayout></LinearLayout>
+                <Button android:id="@+id/btn_recalcular_iter2_estrecha_din_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recalcular" android:layout_marginTop="8dp"/>
+                <LinearLayout android:id="@+id/layout_resultados_iter2_estrecha_din_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                    <TextView android:text="Resultados Iteración 2" android:textColor="@color/text_color_primary" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_iter2_estrecha_din_x" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_iter2_estrecha_din_x" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/tv_banda_seleccionada_codigo_iter2_estrecha_din_x" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_banda_seleccionada_longitud_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_lp_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_le_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_distancia_centros_necesaria_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                    <TextView android:id="@+id/tv_distancia_efectiva_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_iter2_estrecha_din_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_iter2_estrecha_din_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_resultado_estrecha_arpm_x"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/item_background_alt"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView style="@style/ResultadoAlternativa" android:text="Alternativa 3: Estrecha ARPM X (DENTADA)" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_estrecha_arpm_x" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_estrecha_arpm_x" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView android:id="@+id/tv_banda_seleccionada_codigo_estrecha_arpm_x" style="@style/ResultadoCalculo" />
+                <TextView android:id="@+id/tv_banda_seleccionada_longitud_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_lp_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_longitud_le_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <TextView android:id="@+id/tv_distancia_centros_necesaria_estrecha_arpm_x" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                <TextView android:id="@+id/tv_distancia_efectiva_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_estrecha_arpm_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_estrecha_arpm_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/accent_color" android:layout_marginTop="16dp" android:layout_marginBottom="12dp" />
+                <TextView style="@style/ResultadoAlternativa" android:text="Segunda Iteración" android:textSize="18sp" android:textColor="@color/accent_color" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" android:gravity="center_vertical"><Spinner android:id="@+id/spinner_perfil_iter2_estrecha_arpm_x" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp"/><com.google.android.material.textfield.TextInputLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"><com.google.android.material.textfield.TextInputEditText android:id="@+id/et_nuevo_d_iter2_estrecha_arpm_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nuevo d (mm)" android:inputType="numberDecimal" /></com.google.android.material.textfield.TextInputLayout></LinearLayout>
+                <Button android:id="@+id/btn_recalcular_iter2_estrecha_arpm_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Recalcular" android:layout_marginTop="8dp"/>
+                <LinearLayout android:id="@+id/layout_resultados_iter2_estrecha_arpm_x" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                    <TextView android:text="Resultados Iteración 2" android:textColor="@color/text_color_primary" android:textStyle="bold" android:textSize="16sp" android:layout_marginTop="12dp" android:layout_marginBottom="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="Perfil" /><TextView android:id="@+id/tv_perfil_banda_iter2_estrecha_arpm_x" style="@style/ResultadoValorPrincipal" /></LinearLayout><LinearLayout android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal"><TextView style="@style/ResultadoLabel" android:text="# de Bandas (Q)" /><TextView android:id="@+id/tv_numero_bandas_iter2_estrecha_arpm_x" style="@style/ResultadoValorPrincipal" /></LinearLayout></LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/text_color_secondary" android:layout_marginTop="12dp" android:layout_marginBottom="12dp" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content"><TextView android:id="@+id/tv_diametro_minimo_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_diametro_maximo_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_velocidad_periferica_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_longitud_correa_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Banda Seleccionada" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <TextView android:id="@+id/tv_banda_seleccionada_codigo_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" />
+                    <TextView android:id="@+id/tv_banda_seleccionada_longitud_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_lp_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_longitud_le_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <TextView android:id="@+id/tv_distancia_centros_necesaria_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:layout_marginTop="8dp" />
+                    <TextView android:id="@+id/tv_distancia_efectiva_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_pb_resultado_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_pd_resultado_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_potencia_admisible_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone"><TextView android:id="@+id/tv_arco_contacto_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_factor_correccion_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_cl_resultado_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /></LinearLayout>
+                    <TextView android:layout_marginTop="12dp" android:text="Cálculos de Ingeniería" android:textColor="@color/text_color_secondary" android:textStyle="bold|italic" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_calfa_resultado_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:visibility="gone"/><TextView android:id="@+id/tv_tension_estatica_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="start" /></LinearLayout>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"><TextView android:id="@+id/tv_tension_centrifuga_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_tenso_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" /><TextView android:id="@+id/tv_tension_flojo_iter2_estrecha_arpm_x" style="@style/ResultadoCalculo" android:gravity="end" /></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_no_resultados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No se encontraron perfiles adecuados para los datos de entrada."
+                android:textColor="@color/warning_red"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
