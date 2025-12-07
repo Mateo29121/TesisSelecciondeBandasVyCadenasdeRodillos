@@ -178,54 +178,71 @@ public class CadenasActivity extends AppCompatActivity {
             }
             calculateVelocidades();
 
+            // 1. Validaciones generales (Potencia, Distancia, Velocidades)
             if (isInputValid()) {
-                double potenciaDiseno = getPotenciaDeDiseno();
-                double neRpm = Double.parseDouble(etNe.getText().toString());
-                double distancia = Double.parseDouble(etDistancia.getText().toString());
-                double factorServicio = Double.parseDouble(tvFactorServicio.getText().toString());
 
-                String potenciaNominalStr = etPotencia.getText().toString() + " Kw";
-                String factorServicioStr = tvFactorServicio.getText().toString();
-                String neStr = etNe.getText().toString() + " RPM";
-                String nsStr = etNs.getText().toString() + " RPM";
-                String mgStr = etMg.getText().toString();
-
-                Intent intent = new Intent(CadenasActivity.this, ResultadosCadenasActivity.class);
-                intent.putExtra("POTENCIA_DISENO", potenciaDiseno);
-                intent.putExtra("NE_RPM", neRpm);
-
+                // 2. VALIDACIÓN Y CÁLCULO DE DIENTES
                 int[] dientes = calculateAndGetDientes();
-                int z1 = dientes[0];
-                int z2 = dientes[1];
 
-                intent.putExtra("Z1", z1);
-                intent.putExtra("Z2", z2);
-                intent.putExtra("DISTANCIA_CENTROS", distancia);
+                // Si dientes es null, significa que falló la validación de rango (11-25)
+                // o faltan datos, así que NO entramos al if.
+                if (dientes != null) {
+                    int z1 = dientes[0];
+                    int z2 = dientes[1];
 
-                String tipoLubricacion = spinnerLubricacion.getSelectedItem().toString();
-                intent.putExtra("TIPO_LUBRICACION", tipoLubricacion);
+                    // --- Procedemos con el Intent (Código original) ---
+                    double potenciaDiseno = getPotenciaDeDiseno();
+                    double neRpm = Double.parseDouble(etNe.getText().toString());
+                    double distancia = Double.parseDouble(etDistancia.getText().toString());
+                    double factorServicio = Double.parseDouble(tvFactorServicio.getText().toString());
 
-                String nombreAmigableSeleccionado = spinnerTipoCadena.getSelectedItem().toString();
-                String archivoCsvSeleccionado = tipoCadenaMap.get(nombreAmigableSeleccionado);
-                intent.putExtra("TIPO_CADENA_CSV", archivoCsvSeleccionado);
-                intent.putExtra("TIPO_CADENA_NOMBRE", nombreAmigableSeleccionado);
+                    // ... resto de tus puts extra ...
+                    String potenciaNominalStr = etPotencia.getText().toString() + " Kw";
+                    // ... etc ...
 
-                intent.putExtra("FACTOR_SERVICIO", factorServicio);
+                    Intent intent = new Intent(CadenasActivity.this, ResultadosCadenasActivity.class);
+                    intent.putExtra("POTENCIA_DISENO", potenciaDiseno);
+                    intent.putExtra("NE_RPM", neRpm);
 
-                intent.putExtra("POTENCIA_NOMINAL_STR", potenciaNominalStr);
-                intent.putExtra("FACTOR_SERVICIO_STR", factorServicioStr);
-                intent.putExtra("NE_RPM_STR", neStr);
-                intent.putExtra("NS_RPM_STR", nsStr);
-                intent.putExtra("MG_STR", mgStr);
-                intent.putExtra("Z2_STR", String.valueOf(z2));
+                    // USAMOS LOS DIENTES VALIDADOS
+                    intent.putExtra("Z1", z1);
+                    intent.putExtra("Z2", z2);
 
-                double potenciaNominal = 0.0;
-                try {
-                    potenciaNominal = Double.parseDouble(etPotencia.getText().toString());
-                } catch (NumberFormatException e) {}
-                intent.putExtra("POTENCIA_NOMINAL", potenciaNominal);
+                    intent.putExtra("DISTANCIA_CENTROS", distancia);
 
-                startActivity(intent);
+                    // ... resto del código del intent ...
+                    String tipoLubricacion = spinnerLubricacion.getSelectedItem().toString();
+                    intent.putExtra("TIPO_LUBRICACION", tipoLubricacion);
+
+                    // ... (resto de tus extras) ...
+                    String nombreAmigableSeleccionado = spinnerTipoCadena.getSelectedItem().toString();
+                    String archivoCsvSeleccionado = tipoCadenaMap.get(nombreAmigableSeleccionado);
+                    intent.putExtra("TIPO_CADENA_CSV", archivoCsvSeleccionado);
+                    intent.putExtra("TIPO_CADENA_NOMBRE", nombreAmigableSeleccionado);
+                    intent.putExtra("FACTOR_SERVICIO", factorServicio);
+
+                    // Strings para PDF
+                    intent.putExtra("POTENCIA_NOMINAL_STR", etPotencia.getText().toString() + " Kw");
+                    intent.putExtra("FACTOR_SERVICIO_STR", tvFactorServicio.getText().toString());
+                    intent.putExtra("NE_RPM_STR", etNe.getText().toString() + " RPM");
+                    intent.putExtra("NS_RPM_STR", etNs.getText().toString() + " RPM");
+                    intent.putExtra("MG_STR", etMg.getText().toString());
+                    intent.putExtra("Z2_STR", String.valueOf(z2));
+
+                    double potenciaNominal = 0.0;
+                    try { potenciaNominal = Double.parseDouble(etPotencia.getText().toString()); } catch (Exception e) {}
+                    intent.putExtra("POTENCIA_NOMINAL", potenciaNominal);
+
+                    startActivity(intent);
+                    // -------------------------------------------------
+                }
+                else {
+                    // Si retornó null y no hay mensaje visible, es porque faltaban datos de dientes
+                    if (etZ1.getText().toString().isEmpty() && etZ2.getText().toString().isEmpty()) {
+                        tv_z1_warning.setText("Ingrese Z1 o Z2");
+                        tv_z1_warning.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
 
@@ -243,19 +260,55 @@ public class CadenasActivity extends AppCompatActivity {
     private boolean isInputValid() {
         boolean isValid = true;
 
-        // 1. Validación Z1 (11 a 120 dientes)
+// 1. Validación de Dientes (Z1 y Z2)
+        boolean z1EsValido = false;
+        int z1Valor = 0;
+
+        // --- Validar Z1 ---
         if (!etZ1.getText().toString().isEmpty()) {
             try {
-                int z1Value = Integer.parseInt(etZ1.getText().toString());
-                if (z1Value < 11 || z1Value > 120) {
-                    tv_z1_warning.setText("Z1 debe estar entre 11 y 120 dientes");
+                z1Valor = Integer.parseInt(etZ1.getText().toString());
+                // Tu restricción original para Z1
+                if (z1Valor < 11 || z1Valor > 25) {
+                    tv_z1_warning.setText("Z1 debe estar entre 11 y 25 dientes");
                     tv_z1_warning.setVisibility(View.VISIBLE);
                     isValid = false;
                 } else {
                     tv_z1_warning.setVisibility(View.GONE);
+                    z1EsValido = true;
                 }
             } catch (NumberFormatException e) {
                 tv_z1_warning.setText("Z1 debe ser un número entero");
+                tv_z1_warning.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+        }
+
+        // --- Validar Z2 (Solo si el usuario escribió algo) ---
+        if (!etZ2.getText().toString().isEmpty()) {
+            try {
+                int z2Valor = Integer.parseInt(etZ2.getText().toString());
+
+
+                // Regla B: No puede ser 0 o negativo
+                if (z2Valor <= 0) {
+                    tv_z1_warning.setText("Z2 debe ser mayor a 0");
+                    tv_z1_warning.setVisibility(View.VISIBLE);
+                    isValid = false;
+                }
+                // Regla C: Coherencia (Si Z1 es válido, Z2 debe ser mayor para reducir)
+                else if (z1EsValido && z2Valor <= z1Valor) {
+                    tv_z1_warning.setText("Z2 debe ser mayor que Z1 para reducir velocidad");
+                    tv_z1_warning.setVisibility(View.VISIBLE);
+                    isValid = false;
+                }
+                // Si todo está bien y Z1 también estaba bien, ocultamos el error
+                else if (isValid && z1EsValido) {
+                    tv_z1_warning.setVisibility(View.GONE);
+                }
+
+            } catch (NumberFormatException e) {
+                tv_z1_warning.setText("Z2 debe ser un número entero");
                 tv_z1_warning.setVisibility(View.VISIBLE);
                 isValid = false;
             }
@@ -491,24 +544,48 @@ public class CadenasActivity extends AppCompatActivity {
 
     private int[] calculateAndGetDientes() {
         int z1Final = 0;
-        int z2Final =0;
+        int z2Final = 0;
 
-        if (!etMg.getText().toString().isEmpty()) {
-            try {
-                double i = Double.parseDouble(etMg.getText().toString());
-
-                if (!etZ1.getText().toString().isEmpty()) {
-                    z1Final = Integer.parseInt(etZ1.getText().toString());
-                    z2Final = (int) Math.round(z1Final * i);
-                }
-                else if (!etZ2.getText().toString().isEmpty()) {
-                    z2Final = Integer.parseInt(etZ2.getText().toString());
-                    z1Final = (int) Math.round(z2Final / i);
-                }
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+        // Necesitamos la relación mg para calcular
+        if (etMg.getText().toString().isEmpty()) {
+            return null;
         }
+
+        try {
+            double i = Double.parseDouble(etMg.getText().toString());
+
+            if (!etZ1.getText().toString().isEmpty()) {
+                // Caso A: Usuario ingresó Z1 -> Calculamos Z2
+                z1Final = Integer.parseInt(etZ1.getText().toString());
+                z2Final = (int) Math.round(z1Final * i);
+            } else if (!etZ2.getText().toString().isEmpty()) {
+                // Caso B: Usuario ingresó Z2 -> Calculamos Z1
+                z2Final = Integer.parseInt(etZ2.getText().toString());
+                z1Final = (int) Math.round(z2Final / i);
+
+                // (Opcional) Mostramos el Z1 calculado en la pantalla para que el usuario sepa
+                // etZ1.setText(String.valueOf(z1Final));
+            } else {
+                // No hay datos de dientes
+                return null;
+            }
+
+            // --- AQUÍ ESTÁ LA VALIDACIÓN AUMENTADA ---
+            // Verificamos que Z1 (sea ingresado o calculado) esté en el rango permitido
+            if (z1Final < 11 || z1Final > 25) {
+                tv_z1_warning.setText("Z1 (calculado o ingresado) debe estar entre 11 y 25 dientes. Valor actual: " + z1Final);
+                tv_z1_warning.setVisibility(View.VISIBLE);
+                return null; // Retornamos null para bloquear el avance
+            } else {
+                tv_z1_warning.setVisibility(View.GONE);
+            }
+            // -----------------------------------------
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return null;
+        }
+
         return new int[]{z1Final, z2Final};
     }
 }
