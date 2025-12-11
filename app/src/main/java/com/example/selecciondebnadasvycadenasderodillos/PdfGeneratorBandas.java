@@ -33,7 +33,7 @@ public class PdfGeneratorBandas {
 
     // Márgenes y dimensiones de página (A4 Alargado para scroll vertical infinito visual)
     private static final int PAGE_WIDTH = 595;
-    private static final int PAGE_HEIGHT = 3500;
+    private static final int PAGE_HEIGHT = 2300;
     private static final int MARGIN_LEFT = 40;
     private static final int MARGIN_TOP = 40;
     private static final int MARGIN_RIGHT = 40;

@@ -36,7 +36,7 @@ public class PdfGenerator {
 
     // Márgenes y dimensiones de página
     private static final int PAGE_WIDTH = 595; // Ancho A4
-    private static final int PAGE_HEIGHT = 3500; // Altura personalizada extra larga
+    private static final int PAGE_HEIGHT = 2300; // Altura personalizada extra larga
     private static final int MARGIN_LEFT = 40;
     private static final int MARGIN_TOP = 40;
     private static final int MARGIN_RIGHT = 40;
