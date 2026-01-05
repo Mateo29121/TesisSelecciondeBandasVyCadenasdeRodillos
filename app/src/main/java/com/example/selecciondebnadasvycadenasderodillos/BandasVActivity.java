@@ -287,7 +287,7 @@ public class BandasVActivity extends AppCompatActivity {
             }
 
             // Validación B: Ns debe ser menor a Ne
-            if (ns >= ne) {
+            if (ns > ne) {
                 tvVelocidadWarning.setText("Ns debe ser menor a Ne (Sistema Reductor)");
                 tvVelocidadWarning.setVisibility(View.VISIBLE);
                 return false;

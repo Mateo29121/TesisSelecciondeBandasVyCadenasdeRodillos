@@ -385,7 +385,7 @@ public class CadenasActivity extends AppCompatActivity {
                 }
 
                 // Regla B: Ne > Ns (Sistema Reductor)
-                if (ns >= ne) {
+                if (ns > ne) {
                     tvVelocidadWarning.setText("Ne debe ser mayor que Ns (Sistema Reductor)");
                     tvVelocidadWarning.setVisibility(View.VISIBLE);
                     return false;
