@@ -1004,7 +1004,7 @@ public class ResultadosCadenasActivity extends AppCompatActivity {
         data.put("DRAW_IMAGES_HERE", "");
         data.put("SPACER", "10");
 
-        data.put("HEADER_SELECCION", "Seleccion de la Cadena");
+        data.put("HEADER_SELECCION", "Selección de la Cadena");
         data.put("HEADER_ALTERNATIVAS", "Alternativas de Cadena (Norma Americana)");
 
         for (int i = 0; i < 4; i++) {

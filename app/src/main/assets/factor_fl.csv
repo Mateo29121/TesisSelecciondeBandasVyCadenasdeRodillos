@@ -1,5 +1,5 @@
 tipo_lubricacion;velocidad_menor_4;velocidad_4_a_7;velocidad_mayor_7
-Lubricacion suficiente;1;1;1
-Lubricacion insuficiente, sin contaminacion;1.4;2.5;N
-Lubricacion suficiente, con contaminacion;2.5;4;N
-Lubricacion insuficiente;5;N;N
+Lubricación suficiente;1;1;1
+Lubricación insuficiente, sin contaminación;1.4;2.5;N
+Lubricación suficiente, con contaminación;2.5;4;N
+Lubricación insuficiente;5;N;N
